@@ -40,7 +40,7 @@
   <img src="https://streak-stats.demolab.com/?user=vibhav-22&amp;theme=dark&amp;background=251B16&amp;ring=FF994F&amp;fire=FF994F&amp;currStreakLabel=FFB780&amp;sideLabels=FFE0C6&amp;dates=E2C1A8&amp;hide_border=true" alt="Total contributions, current streak, and longest streak">
 </p>
 <p align="center">
-  <img width="100%" src="https://github-readme-activity-graph.vercel.app/graph?username=vibhav-22&amp;bg_color=251B16&amp;color=FFE0C6&amp;line=FF994F&amp;point=FFD3A1&amp;area_color=A94F25&amp;area=true&amp;hide_border=true&amp;custom_title=Contributions%20over%20the%20last%20month" alt="Daily GitHub contributions over the last month">
+  <img width="100%" src="https://raw.githubusercontent.com/vibhav-22/vibhav-22/output/activity.svg" alt="Daily GitHub contributions over the last month">
 </p>
 
 <h2 align="center">Contribution Snake</h2>

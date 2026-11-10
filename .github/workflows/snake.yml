@@ -23,6 +23,7 @@ jobs:
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@v4
       - name: Draw the contribution calendar
         uses: Platane/snk/svg-only@v3
         with:
@@ -30,6 +31,11 @@ jobs:
           outputs: |
             dist/snake.svg?color_snake=#9A3412&color_dots=#F5EADF,#FFDCB5,#FDBA74,#FB923C,#EA580C
             dist/snake-dark.svg?color_snake=#FFF1D6&color_dots=#30241F,#67361F,#AA4C20,#E77731,#FFB46E
+      - name: Draw the activity graph
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api graphql -f login="$GITHUB_REPOSITORY_OWNER" -f query='query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{weeks{contributionDays{date contributionCount}}}}}}' | python3 .github/scripts/activity.py
       - name: Publish the SVGs
         uses: peaceiris/actions-gh-pages@v4
         with:

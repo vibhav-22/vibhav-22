@@ -1,0 +1,39 @@
+name: Contribution snake
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *'
+  push:
+    paths:
+      - '.github/workflows/snake.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: contribution-snake
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Draw the contribution calendar
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/snake.svg?color_snake=#9A3412&color_dots=#F5EADF,#FFDCB5,#FDBA74,#FB923C,#EA580C
+            dist/snake-dark.svg?color_snake=#FFF1D6&color_dots=#30241F,#67361F,#AA4C20,#E77731,#FFB46E
+      - name: Publish the SVGs
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: output
+          enable_jekyll: false
